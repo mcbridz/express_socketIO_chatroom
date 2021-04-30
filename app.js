@@ -25,7 +25,7 @@ module.exports = function (deps) {
 
   // this is the POST handler for /messages
   // this function should write a new message to the file
-  function postMessage (req, res) {
+  function postMessage(req, res) {
     let data = ''
     req.on('data', function (chunk) {
       data += chunk
@@ -46,7 +46,7 @@ module.exports = function (deps) {
 
   // this is the GET handler for /messages
   // this function should respond with the list of messages
-  function getMessages (req, res) {
+  function getMessages(req, res) {
     fs.readFile(deps.messagesPath, 'utf8', (err, text) => {
       if (err) {
         res.statusCode = 500
@@ -64,7 +64,7 @@ module.exports = function (deps) {
   }
 
   return http.createServer((req, res) => {
-    router(req, res, {}, function onError (err) {
+    router(req, res, {}, function onError(err) {
       if (err) {
         res.statusCode = err.statusCode || 500
         res.end(err.message)
